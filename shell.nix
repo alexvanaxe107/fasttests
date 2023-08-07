@@ -1,9 +1,10 @@
-with import <nixpkgs> {};
+{pkgs ? import <nixpkgs> {}}:
 let
-  pythonEnv = python3.withPackages (ps: [
+  pythonEnv = pkgs.python3.withPackages (ps: [
     ps.fastapi
+    ps.uvicorn
   ]);
-in mkShell {
+in pkgs.mkShell {
   packages = [
     pythonEnv
   ];
